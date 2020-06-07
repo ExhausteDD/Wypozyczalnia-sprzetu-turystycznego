@@ -49,3 +49,35 @@ app.get('/', function(req, res) {
         }
     );
 });
+
+app.get('/category', function(req, res) {
+    console.log(req.query.id);
+    let categoryId = req.query.id;
+
+    let category = new Promise(function(resolve, reject){
+        con.query(
+            'SELECT * FROM category WHERE id='+categoryId,
+            function(error, result){
+                if (error) reject(err);
+                resolve(result);
+            }
+        );
+    });
+    let goods = new Promise(function(resolve, reject){
+        con.query(
+            'SELECT * FROM goods WHERE category='+categoryId,
+            function(error, result){
+                if (error) reject(err);
+                resolve(result);
+            }
+        );
+    });
+
+    Promise.all([category, goods]).then(function(value){
+        console.log(value[1]);
+        res.render('category', {
+            category: JSON.parse(JSON.stringify(value[0])),
+            goods: JSON.parse(JSON.stringify(value[1]))
+        });
+    });
+});
