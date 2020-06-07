@@ -12,8 +12,4 @@ node_modules/
 # Optional npm cache directory
 .npm
 
-public/
-views/
-*.js
 package-lock.json
-*.json
