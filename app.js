@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
     con.query(
         'SELECT * FROM goods',
         function(error, result) {
-            if (error) throw err;
+            if (error) throw error;
             // console.log(result);
             let goods = {};
             for (let i = 0; i < result.length; i++){
@@ -58,7 +58,7 @@ app.get('/category', function(req, res) {
         con.query(
             'SELECT * FROM category WHERE id='+categoryId,
             function(error, result){
-                if (error) reject(err);
+                if (error) reject(error);
                 resolve(result);
             }
         );
@@ -67,17 +67,24 @@ app.get('/category', function(req, res) {
         con.query(
             'SELECT * FROM goods WHERE category='+categoryId,
             function(error, result){
-                if (error) reject(err);
+                if (error) reject(error);
                 resolve(result);
             }
         );
     });
 
     Promise.all([category, goods]).then(function(value){
-        console.log(value[1]);
         res.render('category', {
             category: JSON.parse(JSON.stringify(value[0])),
             goods: JSON.parse(JSON.stringify(value[1]))
         });
+    });
+});
+
+app.get('/goods', function(req, res) {
+    console.log(req.query.id);
+    con.query('SELECT * FROM goods WHERE id='+req.query.id, function(error, result, fields){
+        if (error) throw error;
+        res.render('goods', {goods: JSON.parse(JSON.stringify(result))});
     });
 });
