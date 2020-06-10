@@ -7,9 +7,9 @@ div(class='col col-md-4')
                 class='card-images'
             )
             p(class='text-center') #{val['cost'].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$& ')} zł
-            ul(class='cart-action')
-                li
-                    button(
-                        data-goods_id = val['id']
-                        class='button button-primary add-to-cart'
-                    ) Do zamówienia
+        ul(class='cart-action')
+            li
+                button(
+                    data-goods_id = val['id']
+                    class='button button-primary add-to-cart'
+                ) Do zamówienia

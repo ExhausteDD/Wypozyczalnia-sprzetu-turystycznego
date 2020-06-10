@@ -52,3 +52,32 @@
     display: flex;
     justify-content: center;
 }
+
+/* ========== nav ========== */
+.site-nav {
+    width: 300px;
+    min-height: 100vh;
+    position: fixed;
+    left: -300px;
+    top: 0;
+    z-index: 10;
+    padding: 10px;
+    transition: all ease 1s;
+    color: #fff;
+}
+
+.close-button-div{
+    text-align: right;
+}
+
+.show-nav {
+    position: relative;
+}
+
+ul.category-list {
+    list-style: disc;
+}
+
+ul.category-list a {
+    color: #424242;
+}

@@ -25,6 +25,8 @@ let con = mysql.createConnection({
     database: 'wypozyczalnia'
 });
 
+app.use(express.json());
+
 app.listen(3003, function() {
     console.log('Node express work on 3003');
 });
@@ -34,12 +36,10 @@ app.get('/', function(req, res) {
         'SELECT * FROM goods',
         function(error, result) {
             if (error) throw error;
-            // console.log(result);
             let goods = {};
             for (let i = 0; i < result.length; i++){
                 goods[result[i]['id']] = result[i];
             }
-            // console.log(goods);
             console.log(JSON.parse(JSON.stringify(goods)));
             res.render('main', {
                 foo: 'hello',
@@ -86,5 +86,28 @@ app.get('/goods', function(req, res) {
     con.query('SELECT * FROM goods WHERE id='+req.query.id, function(error, result, fields){
         if (error) throw error;
         res.render('goods', {goods: JSON.parse(JSON.stringify(result))});
+    });
+});
+
+
+app.post('/get-category-list', function(req, res){
+    // console.log(req.body);
+    con.query('SELECT id, category FROM category', function(error, result, fields){
+        if (error) throw error;
+        console.log(result);
+        res.json(result);
+    });
+});
+
+app.post('/get-goods-info', function(req, res){
+    console.log(req.body.key);
+    con.query('SELECT id, name, cost FROM goods WHERE id IN ('+req.body.key.join(',')+')', function(error, result, fields){
+        if (error) throw error;
+        console.log(result);
+        let goods = {};
+        for (let i = 0; i < result.length; i++){
+            goods[result[i]['id']] = result[i];
+        }
+        res.json(goods);
     });
 });
