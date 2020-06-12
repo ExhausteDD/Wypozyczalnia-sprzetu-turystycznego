@@ -101,13 +101,18 @@ app.post('/get-category-list', function(req, res){
 
 app.post('/get-goods-info', function(req, res){
     console.log(req.body.key);
-    con.query('SELECT id, name, cost FROM goods WHERE id IN ('+req.body.key.join(',')+')', function(error, result, fields){
-        if (error) throw error;
-        console.log(result);
-        let goods = {};
-        for (let i = 0; i < result.length; i++){
-            goods[result[i]['id']] = result[i];
-        }
-        res.json(goods);
-    });
+    if(req.body.key.length != 0) {
+        con.query('SELECT id, name, cost FROM goods WHERE id IN ('+req.body.key.join(',')+')', function(error, result, fields){
+            if (error) throw error;
+            console.log(result);
+            let goods = {};
+            for (let i = 0; i < result.length; i++){
+                goods[result[i]['id']] = result[i];
+            }
+            res.json(goods);
+        });
+    }
+    else {
+        res.send('0');
+    }
 });

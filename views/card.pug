@@ -1,12 +1,15 @@
 div(class='col col-md-4')
     div(class='card')
         a(href='goods?id='+val['id'])
-            h3(class='card-title text-center') #{val['name']}
-            img(
-                src='assets/images/'+val['image']
-                class='card-images'
-            )
-            p(class='text-center') #{val['cost'].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$& ')} zł
+            div(class='card-title-wrapper')
+                h3(class='card-title text-center') #{val['name']}
+            div(class='card-img')
+                img(
+                    src='assets/images/'+val['image']
+                    class='card-images'
+                )
+            div(class='card-price')
+                p(class='text-center') #{val['cost'].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$& ')} zł / 7dni
         ul(class='cart-action')
             li
                 button(
