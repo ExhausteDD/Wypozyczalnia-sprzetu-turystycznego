@@ -1,15 +1,18 @@
 div(class='col col-md-4')
     div(class='card')
         a(href='goods?id='+val['id'])
-            h3(class='card-title text-center') #{val['name']}
-            img(
-                src='assets/images/'+val['image']
-                class='card-images'
-            )
-            p(class='text-center') #{val['cost'].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$& ')} zł
-            ul(class='cart-action')
-                li
-                    button(
-                        data-goods_id = val['id']
-                        class='button button-primary add-to-cart'
-                    ) Do zamówienia
+            div(class='card-title-wrapper')
+                h3(class='card-title text-center') #{val['name']}
+            div(class='card-img')
+                img(
+                    src='assets/images/'+val['image']
+                    class='card-images'
+                )
+            div(class='card-price')
+                p(class='text-center') #{val['cost'].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$& ')} zł / 7dni
+        ul(class='cart-action')
+            li
+                button(
+                    data-goods_id = val['id']
+                    class='button button-primary add-to-cart'
+                ) Do zamówienia
