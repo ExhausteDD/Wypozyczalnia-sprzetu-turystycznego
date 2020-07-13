@@ -1,26 +1,14 @@
-// ADD CATEGORY
-document.querySelector('#add-category').onsubmit = function (event) {
+// DELETE Admin USER
+document.querySelector('#delete-admin-user').onclick = function (event) {
     event.preventDefault();
-    let category = document.querySelector('#category-name').value.trim();
-    let description = document.querySelector('#category-description').value.trim();
-    let image = document.querySelector('#category-image').value.trim();
+    let id = document.querySelector('#admin-user-id').value.trim();
 
-    if (category == '' || description == '' || image == '') {
-        //не заполнены поля
-        Swal.fire({
-            title : 'Warning',
-            text: 'Fill all fields',
-            type: 'info',
-            confirmButtonText: 'OK'
-        });
-    }
+    
 
-    fetch('/add-category', {
+    fetch('/delete-admin-user', {
         method: 'POST',
         body: JSON.stringify({
-            'category': category,
-            'image': image,
-            'description': description        
+            'id': id      
         }),
         headers: {
             'Accept': 'application/json',
@@ -51,5 +39,3 @@ document.querySelector('#add-category').onsubmit = function (event) {
             }
         })
 }
-
-

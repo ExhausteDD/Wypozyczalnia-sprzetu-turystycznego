@@ -1,0 +1,12 @@
+include admin_header.pug
+
+h1(class="text-center") Admin-panel
+h2(class="text-center") Delete  Admin User
+
+form(class="text-center border border-light p-5 login-form" action="/delete-admin-user" method="POST")
+    p(class="h4 mb-4") Write an Admin User id you want to delete
+    label Admin User ID
+    input(name="category" type="text" id="admin-user-id" class="form-control mb-4" placeholder="Please, enter your category here")
+    button(class="btn btn-info btn-block my-4" type="submit" value="delete-admin-user" id="delete-admin-user") Delete Admin User
+
+script(src='/js/admin-user-delete.js')

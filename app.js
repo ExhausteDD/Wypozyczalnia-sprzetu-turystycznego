@@ -4,6 +4,8 @@ let cookieParser = require('cookie-parser');
 let admin = require('./admin');
 let makeHash = require('./hash');
 
+const Swal = require('sweetalert2')
+
 /**
  * public - name of folder where are all files of app
  */
@@ -251,8 +253,14 @@ app.post('/login', function (req, res) {
 });
 
 app.get('/add-category', function (req, res) {
-    res.render('add_category', {});
+    con.query(`SELECT 
+	id, category, description 
+FROM 
+	category`, function (error, result, fields) {
+        if (error) throw error;
+        res.render('add_category', { order: JSON.parse(JSON.stringify(result)) });
     });
+});
 
 app.post('/add-category', function (req, res) {
     console.log(req.body);
@@ -262,8 +270,87 @@ app.post('/add-category', function (req, res) {
     else {
     res.send('0');
     }
-});    
+}); 
 
+app.get('/delete-category', function (req, res) {
+    con.query(`SELECT 
+	id, category, description 
+FROM 
+	category`, function (error, result, fields) {
+        if (error) throw error;
+        res.render('delete_category', { order: JSON.parse(JSON.stringify(result)) });
+    });
+});
+
+app.post('/delete-category', function (req, res) {
+    console.log(req.body);
+    if (req.body.length != 0) {
+        deleteCategories(req.body, res);    
+    }
+    else {
+    res.send('0');
+    }
+});
+
+app.get('/add-admin-user', function (req, res) {
+    con.query(`SELECT 
+	id, login, password
+FROM 
+	user`, function (error, result, fields) {
+        if (error) throw error;
+        res.render('add_admin_user', { order: JSON.parse(JSON.stringify(result)) });
+    });
+});
+
+app.post('/add-admin-user', function (req, res) {
+    console.log(req.body);
+    if (req.body.length != 0) {
+        addAdminUser(req.body, res);    
+    }
+    else {
+    res.send('0');
+    }
+}); 
+
+app.get('/delete-admin-user', function (req, res) {
+    con.query(`SELECT 
+	id, login, password 
+FROM 
+	user`, function (error, result, fields) {
+        if (error) throw error;
+        res.render('delete_admin_user', { order: JSON.parse(JSON.stringify(result)) });
+    });
+});
+
+app.post('/delete-admin-user', function (req, res) {
+    console.log(req.body);
+    if (req.body.length != 0) {
+        deleteAdminUser(req.body, res);    
+    }
+    else {
+    res.send('0');
+    }
+});
+
+app.get('/delete-product', function (req, res) {
+    con.query(`SELECT 
+	* 
+FROM 
+	goods`, function (error, result, fields) {
+        if (error) throw error;
+        res.render('delete_product', { order: JSON.parse(JSON.stringify(result)) });
+    });
+});
+
+app.post('/delete-product', function (req, res) {
+    console.log(req.body);
+    if (req.body.length != 0) {
+        deleteProduct(req.body, res);    
+    }
+    else {
+    res.send('0');
+    }
+});
 
 function saveOrder(data, result) {
     // data - information about user
@@ -289,15 +376,74 @@ function saveOrder(data, result) {
 function addCategories(data, result) {
     // data - information about user
     // result - information abou product
+    console.log(data);
     let sql;
-    sql = "INSERT INTO category (category, description, image ) VALUES ('"+ data.category + "','" + data.description + "','" + data.image + "')";
+    sql = "INSERT INTO category (category, description) VALUES ('"+ data.category + "','" + data.description + "')";
     con.query(sql, function (error, resultQuery) {
         if (error) throw error;
         console.log('1 category was added');
         console.log(resultQuery);
+        }   
+    );
+    console.log(result);
+}
+
+function deleteCategories(data, result) {
+    // data - information about user
+    // result - information abou product
+    console.log(data);
+    let sql;
+    sql = "DELETE FROM category WHERE category.id="+ data.id;
+    con.query(sql, function (error, resultQuery) {
+        if (error) throw error;
+        console.log('1 category was deleted');
+        console.log(resultQuery);
         }
     );
+    console.log(result);
 }
+
+function addAdminUser(data, result) {
+    // data - information about user
+    // result - information abou product
+    console.log(data);
+    let sql;
+    sql = "INSERT INTO user (login, password) VALUES ('"+ data.login + "','" + data.password + "')";
+    con.query(sql, function (error, resultQuery) {
+        if (error) throw error;
+        console.log('1 user was added');
+        console.log(resultQuery);
+        }   
+    );
+    console.log(result);
+}
+
+function deleteAdminUser(data, result) {
+    console.log(data);
+    let sql;
+    sql = "DELETE FROM user WHERE user.id="+ data.id;
+    con.query(sql, function (error, resultQuery) {
+        if (error) throw error;
+        console.log('1 user was deleted');
+        console.log(resultQuery);
+        }
+    );
+    console.log(result);
+}
+
+function deleteProduct(data, result) {
+    console.log(data);
+    let sql;
+    sql = "DELETE FROM goods WHERE goods.id="+ data.id;
+    con.query(sql, function (error, resultQuery) {
+        if (error) throw error;
+        console.log('1 product was deleted');
+        console.log(resultQuery);
+        }
+    );
+    console.log(result);
+}
+
 
 async function sendMail(data, result) {
     let res = '<h2>Zamówienie z wypożyczalni</h2>';

@@ -1,12 +1,10 @@
-// ADD CATEGORY
-document.querySelector('#add-category').onsubmit = function (event) {
+// ADD Admin USER
+document.querySelector('#add-admin-user').onsubmit = function (event) {
     event.preventDefault();
-    let category = document.querySelector('#category-name').value.trim();
-    let description = document.querySelector('#category-description').value.trim();
-    let image = document.querySelector('#category-image').value.trim();
+    let login = document.querySelector('#admin-user-login').value.trim();
+    let password = document.querySelector('#admin-user-password').value.trim();
 
-    if (category == '' || description == '' || image == '') {
-        //не заполнены поля
+    if (login == '' || password == '') {
         Swal.fire({
             title : 'Warning',
             text: 'Fill all fields',
@@ -18,9 +16,8 @@ document.querySelector('#add-category').onsubmit = function (event) {
     fetch('/add-category', {
         method: 'POST',
         body: JSON.stringify({
-            'category': category,
-            'image': image,
-            'description': description        
+            'login': login,
+            'password': password      
         }),
         headers: {
             'Accept': 'application/json',

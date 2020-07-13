@@ -1,0 +1,15 @@
+include admin_header.pug
+
+h1(class="text-center") Admin-panel
+h2(class="text-center") Adding new Admin User
+
+
+form(class="text-center border border-light p-5 login-form" action="/add-admin-user" method="POST")
+    p(class="h4 mb-4") Write login and password to add user
+    label Login
+    input(name="login" type="text" id="admin-user-login" class="form-control mb-4" placeholder="Please, enter your login here")
+    label Password
+    input(name="password" type="text" id="admin-user-password" class="form-control mb-4" placeholder="Please, enter your password here")
+    button(class="btn btn-info btn-block my-4" type="submit" value="add-admin-user" id="add-admin-user") Add Admin User
+    
+script(src='/js/add_admin_user.js')

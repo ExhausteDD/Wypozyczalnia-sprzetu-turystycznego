@@ -1,0 +1,13 @@
+include admin_header.pug
+
+h1(class="text-center") Admin-panel
+h2(class="text-center") Delete  Product
+table(class="table table-dark")
+
+form(class="text-center border border-light p-5 login-form" action="/delete-product" method="POST")
+    p(class="h4 mb-4") Write a product id you want to delete
+    label Product ID
+    input(name="category" type="text" id="product-id" class="form-control mb-4" placeholder="Please, enter your product here")
+    button(class="btn btn-info btn-block my-4" type="submit" value="delete-product" id="delete-product") Delete product
+
+script(src='/js/product-delete.js')

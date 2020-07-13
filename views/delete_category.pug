@@ -1,0 +1,22 @@
+include admin_header.pug
+
+h1(class="text-center") Admin-panel
+h2(class="text-center") Delete  Category
+table(class="table table-dark")
+ tr
+    th ID
+    th Category
+    th Description
+ each val, index in order    
+  tr
+    td #{val['id']}
+    td #{val['category']}
+    td #{val['description']}
+
+form(class="text-center border border-light p-5 login-form" action="/add-category" method="POST")
+    p(class="h4 mb-4") Write a category id you want to delete
+    label Category Name
+    input(name="category" type="text" id="category-id" class="form-control mb-4" placeholder="Please, enter your category here")
+    button(class="btn btn-info btn-block my-4" type="submit" value="delete-category" id="delete-category") Delete category
+
+script(src='/js/category-delete.js')
