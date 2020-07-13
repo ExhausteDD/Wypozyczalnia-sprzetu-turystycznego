@@ -35,9 +35,9 @@
     padding: 0;
 }
 
-/* -----------card--------------- */
+/* -----------cart--------------- */
 
-.card {
+.cart {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -46,21 +46,23 @@
     padding: 30px 0 30px;
 }
 
-.card-title{
+.cart-title{
     font-size: 20px;
 }
 
-.card-img{
+.cart-img{
     height: 300px;
 }
 
-.card-images {
+.cart-images {
     display: block;
     margin: 20px auto;
     height: 100%;
+    max-width: 90%;
+    min-height: 150px;
 }
 
-.card-price {
+.cart-price {
     margin-top: 20px;
 }
 
@@ -68,6 +70,21 @@
     display: flex;
     justify-content: center;
 }
+
+.goods-big-image {
+    height: 300px;
+}
+
+.goods-little-image {
+    max-width: 90%;
+    margin: 5%;
+    max-height: 100px;
+}
+
+.add-to-cart {
+    margin-left: 50px;
+}
+
 
 /* ========== nav ========== */
 .site-nav {
@@ -99,5 +116,92 @@ ul.category-list a {
 }
 
 .site-nav a {
-    color: #442244;
+    color: #424242;
+}
+
+/* FOOTER */
+
+.logo {
+   width: 20vh; 
+}
+
+footer {
+    background-color: #333333;
+}
+
+.footer {
+    display: flex;
+    padding: 0 60px;
+    background-color: #333333;
+    color: #dadada;
+}
+
+.footer .footer-block:nth-child(1) {
+    width: 33%;
+}
+
+.footer .footer-block:nth-child(2) {
+    width: 34%;
+    border-left: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+}
+
+.footer .footer-block:nth-child(3) {
+    width: 33%;
+}
+
+.footer .footer-block  {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center; 
+    padding: 0 30px;
+}
+
+.footer .footer-block:nth-child(1)  {
+    justify-content: center;
+    height: 100%;
+}
+
+.footer-block-title {
+    font-size: 1.6rem;
+    padding: 10px 0;
+    color: #dedede;
+
+}
+
+.footer .footer-block a {
+    text-decoration: underline;
+    color: #dadada;
+}
+
+.footer .footer-block a:hover {
+    text-decoration: none;
+}
+
+.footer .footer-block p {
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+.footer .footer-block p:nth-child(2) {
+    padding: 0;
+}
+
+.footer .footer-block p:nth-child(4) {
+    padding: 0;
+}
+
+.footer .footer-block p:nth-child(5) {
+    padding: 0;
+}
+
+.footer-signature {
+    padding: 15px 0 15px 60px;
+    color: #dadada;
+    font-size: 0.75rem;
+}
+
+.footer-link {
+    font-size: 0.75rem;
 }

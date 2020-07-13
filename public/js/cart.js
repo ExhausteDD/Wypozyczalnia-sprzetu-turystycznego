@@ -47,13 +47,13 @@ function showCart(data) {
         out += `<tr><td><i class = "far fa-minus-square cart-minus" data-goods_id="${key}"></i></td>`;
         out += `<td>${cart[key]}</td>`;
         out += `<td><i class = "far fa-plus-square cart-plus" data-goods_id="${key}"></i></td>`;
-        out += `<td>${data[key]['cost']*cart[key]} pln</td>`;
+        out += `<td>${formatPrice(data[key]['cost']*cart[key])} pln</td>`;
         out += '</tr>';
         total += cart[key]*data[key]['cost'];
     }
-    out += `<tr><td colspan = "3">Razem: </td><td>${total} pln</td></tr>`;
+    out += `<tr><td colspan = "3">Razem: </td><td>${formatPrice(total)} pln</td></tr>`;
     out += '</tbody></table>';
-    document.querySelector('#card-nav').innerHTML = out;
+    document.querySelector('#cart-nav').innerHTML = out;
     document.querySelectorAll('.cart-minus').forEach(function(element){
         element.onclick = cartMinus;
     });
@@ -82,4 +82,8 @@ function cartMinus() {
 
 function updateLocalStorageCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function formatPrice(price) {
+    return price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$& ');
 }

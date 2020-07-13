@@ -1,0 +1,16 @@
+include admin_header.pug
+
+h1(class="text-center") Admin-panel
+h2(class="text-center") Adding new Category
+
+form(class="text-center border border-light p-5 login-form" action="/add-category" method="POST")
+    p(class="h4 mb-4") Write a category you want to add
+    label Category name
+    input(name="category" type="text" id="category-name" class="form-control mb-4" placeholder="Please, enter your category here")
+    label Description
+    input(name="description" type="text" id="category-description" class="form-control mb-4" placeholder="Please, enter your description here")
+    label Image-name
+    input(name="description" type="text" id="category-image" class="form-control mb-4" placeholder="Please, enter your image-name here")
+    button(class="btn btn-info btn-block my-4" type="submit" value="add-category" id="add-category") Add category
+
+script(src='/js/category.js')
