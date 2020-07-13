@@ -1,0 +1,31 @@
+.login-form {
+    width: 40%;
+    margin: 10% auto 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.wrapper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.left-panel {
+    width: 20%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.left-panel ul {
+    list-style-type: none;
+    text-align: left;
+    font-size: 2rem;
+}
+
+.left-panel ul li a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.dashboard-container {
+    width: 80%;
+}

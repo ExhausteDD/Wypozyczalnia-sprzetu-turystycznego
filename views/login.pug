@@ -1,0 +1,22 @@
+include admin_header.pug
+
+//- form(class="login-form" action="/login", method="POST")
+//-     div(class="form-group")
+//-         label Login
+//-         input(name="login" type="login" class="form-control"  id="login" value="root")
+//-     div(class="form-group")
+//-         label Password
+//-         input(name="password" type="password" class="form-control" id="password", value="root")
+//-     button(type="submit" class="btn btn-primary" value="login") Zatwierdź
+
+//- ===========================================================================
+form(class="text-center border border-light p-5 login-form" action="/login" method="POST")
+    p(class="h4 mb-4") Sign in
+    label Login
+    input(name="login" type="login" id="login" class="form-control mb-4" placeholder="Please, enter your login here")
+    label Password
+    input(name="password" type="password" id="password" class="form-control mb-4" placeholder="Please, enter your password here")
+    button(class="btn btn-info btn-block my-4" type="submit" value="login") Sign in
+
+
+//- script(src="js/login.js")

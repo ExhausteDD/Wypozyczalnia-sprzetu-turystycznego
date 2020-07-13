@@ -1,0 +1,30 @@
+include admin_header.pug
+
+h1(class="text-center") Admin-panel
+h2(class="text-center") Order-information
+table(class="table table-dark")
+ tr
+    th ID
+    th Date
+    th User ID
+    th Goods ID
+    th Goods Cost
+    th Goods Amount
+    th Total
+    th User
+    th Phone
+    th Address
+ each val, index in order    
+  tr
+    td #{val['id']}
+    td #{val['human_date']}
+    td #{val['user_id']}
+    td #{val['goods_id']}
+    td #{val['goods_cost'].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&')} zł
+    td #{val['goods_amount']}
+    td #{val['total'].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&')} zł
+    td #{val['user']}
+    td #{val['phone']}
+    td #{val['address']}
+
+

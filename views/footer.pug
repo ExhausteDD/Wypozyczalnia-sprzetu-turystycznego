@@ -1,7 +1,28 @@
-div(class='footer')
-    div(class='container')
-        div(class='row')
-            div(class='col col-lg-12') Wypożyczalnia
 
-script(src='js/nav.js')
-script(src='js/cart.js')
+footer
+    div(class="footer")
+        div(class="footer-block")
+            h3(class="footer-block-title") Wypożyczalnia
+            img(class="logo" src="/assets/images/free-logo.png")
+        div(class="footer-block")
+            h3(class="footer-block-title") About us
+            p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+        div(class="footer-block")
+            h3(class="footer-block-title") Contact us 
+            div(class="footer-text-wrapper")
+                p Adress:
+                p Rzeszów, Polskiego Czerwonego Krzyża 6, Ulica (35-060)
+                p Email: 
+                a(class="footer-link" href="mailto:wypozyczalnia.rzeszow@gmail.com" title="Email wypozyczalnia.rzeszow@gmail.com") wypozyczalnia.rzeszow@gmail.com
+                p Web: 
+                a(class="footer-link" href="localhost:3003/") wypozyczalnia.rzeszow.pl
+                p Telephone: +48 733-654-575
+                a(href="/login" id="onlyAdmin") Tylko dla Adminów
+    p(class="footer-signature") © 2020 - Wypożyczalnia by Vitalii Lukash and Yevhenii Kysil
+
+
+//-confugure sweetalert2 module
+script(src='https://cdn.jsdelivr.net/npm/sweetalert2@9') 
+script(src='/js/nav.js')
+script(src='/js/cart.js')
+
